@@ -1,0 +1,3 @@
+{
+  "ignore": ["exports/*.json", "contentful-import-error-log-*"]
+}
