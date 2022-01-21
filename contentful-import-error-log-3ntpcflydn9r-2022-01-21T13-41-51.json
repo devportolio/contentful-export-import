@@ -1,0 +1,73 @@
+[
+  {
+    "ts": "2022-01-21T12:42:30.693Z",
+    "level": "error",
+    "error": {
+      "name": "AssetProcessingTimeout",
+      "message": "Asset is taking longer then expected to process.",
+      "entity": {
+        "metadata": {
+          "tags": [
+          ]
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "3ntpcflydn9r"
+            }
+          },
+          "id": "576aHUNjqx0g2fnt7bJ5ps",
+          "type": "Asset",
+          "createdAt": "2022-01-18T08:17:17.279Z",
+          "updatedAt": "2022-01-21T12:41:57.411Z",
+          "environment": {
+            "sys": {
+              "id": "josget",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "createdBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "0Anx9S57wYdZC7ScLDIoEG"
+            }
+          },
+          "updatedBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "0Anx9S57wYdZC7ScLDIoEG"
+            }
+          },
+          "publishedCounter": 0,
+          "version": 1161
+        },
+        "fields": {
+          "title": {
+            "sv": "Memory Game TEST"
+          },
+          "description": {
+            "sv": "sgh"
+          },
+          "file": {
+            "sv": {
+              "contentType": "application/pdf",
+              "fileName": "my_body_memory_2.pdf",
+              "upload": "https://assets.ctfassets.net/u0l4e34pxlh2/576aHUNjqx0g2fnt7bJ5ps/4cfc489472ae541261bf32498ca44f1d/my_body_memory_2.pdf"
+            }
+          }
+        }
+      },
+      "stacktrace": [
+        "AssetProcessingTimeout: Asset is taking longer then expected to process.",
+        "C:\\clioprojects\\copy-content\\node_modules\\contentful-management\\dist\\contentful-management.node.js:8414:21",
+        "runMicrotasks (<anonymous>)",
+        "processTicksAndRejections (node:internal/process/task_queues:96:5)"
+      ]
+    }
+  }
+]

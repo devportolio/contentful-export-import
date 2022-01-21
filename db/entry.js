@@ -23,13 +23,14 @@ const Entry = sequelize.define("entries", {
     parentId: { type: Sequelize.STRING, allowNull: true },
     details: { type: Sequelize.TEXT, allowNull: true },
     imported: { type: Sequelize.BOOLEAN, defaultValue: false },
+    batchDone: { type: Sequelize.BOOLEAN, defaultValue: false },
 });
 
 // authenticate with the database
 sequelize
     .authenticate()
     .then(function(err) {
-        Entry.sync({ force: false})
+        Entry.sync({ force: true})
         console.log("Sqlite connection established.");
     })
     .catch(function(err) {

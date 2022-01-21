@@ -90,6 +90,9 @@ const exportContent = async ({ entryId, spaceId, environmentId, managementToken 
             // Export entries that were not not imported yet
             if (!exportedIds.includes(id)) {
                 const ids = await exportEntry(id, spaceId, environmentId, managementToken)
+
+                await Entry.create({ entryId: id, parentId: entryId })
+
                 exportedIds =  [...new Set([id, ...exportedIds])]
                 childEntryIds = [...ids, ...childEntryIds]
             }
@@ -121,6 +124,7 @@ app.post('/copy-content', async (req, res) => {
 
 
     // Store exported item
+    /*
     for (const id of exportedIds) {
         await Entry.create({
             entryId: id,
@@ -128,17 +132,26 @@ app.post('/copy-content', async (req, res) => {
         })
     }
 
+     */
+
     for (const id of exportedIds) {
         await importContent({ ...req.body.import, entryId: id })
         await Entry.update({  imported: true }, { where: { entryId: id } })
     }
+
+    await Entry.update({  batchDone: true }, { where: { parentId: req.body.import.entryId } })
 
     res.send(true)
 
 })
 
 app.get('/import-update/:entryId', async (req, res) => {
-    const entries = await Entry.findAll({ where: { parentId: req.params.entryId } })
+    const entries = await Entry.findAll({
+        where: {
+            parentId: req.params.entryId,
+            batchDone: false
+        },
+    })
 
     const total = entries.length
     const processed = entries.reduce((sum, entry) => sum + (+entry.imported), 0)
